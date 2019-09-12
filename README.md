@@ -1,14 +1,14 @@
 ## AdrielFreud
 
 ![](https://img.shields.io/badge/Calorimetro-v1.0-blue?style=flat&logo=appveyor)
-![](https://img.shields.io/badge/plataforma-win32--win64--blue?style=flat&logo=appveyor)
+![](https://img.shields.io/badge/plataforma-win32--win64-blue?style=flat&logo=appveyor)
 ![](https://img.shields.io/badge/python-3.x.x-blue)
 
 ## AVISO
 - Caso você encontrar um bug [Click-aqui](https://github.com/AdrielFreud/Calorimetro/issues/new) e crie um issue para eu corrijir o bug.
 
 ## Imagem
-![photo]()
+![photo](https://i.imgur.com/nYfRlOO.png)
 
 ## Características
  - Calcular Calorias.
