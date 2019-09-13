@@ -4,6 +4,8 @@
 ![](https://img.shields.io/badge/plataforma-win32--win64-blue?style=flat&logo=appveyor)
 ![](https://img.shields.io/badge/python-3.x.x-blue)
 
+CESP
+
 ## AVISO
 - Caso você encontrar um bug [Click-aqui](https://github.com/AdrielFreud/Calorimetro/issues/new) e crie um issue para eu corrijir o bug.
 
