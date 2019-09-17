@@ -7,7 +7,7 @@
 CESP
 
 ## AVISO
-- Caso você encontrar um bug [Click-aqui](https://github.com/AdrielFreud/Calorimetro/issues/new) e crie um issue para eu corrijir o bug.
+- Caso você encontrar um bug [Click-aqui](https://github.com/AdrielFreud/Calorimetro/issues/new) crie um issue para eu corrijir-lo.
 
 ## Imagem
 ![photo](https://i.imgur.com/nYfRlOO.png)
@@ -18,7 +18,7 @@ CESP
  - Lista de Alimentos Incluso.
  - Contagem de Consumo de alimentos.
  
- ## Dowloand
+ ## Download
 Baixe diretamente do github com:
  - git clone https://github.com/AdrielFreudCalorimetro.git
  - ou https://github.com/AdrielFreud/Calorimetro/archive/master.zip
