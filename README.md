@@ -7,7 +7,7 @@
 CESP
 
 ## AVISO
-- Caso você encontrar um bug [Click-aqui](https://github.com/AdrielFreud/Calorimetro/issues/new) crie um issue para eu corrijir-lo.
+- Caso você encontrar um bug [Click-aqui](https://github.com/AdrielFreud/Calorimetro/issues/new) crie um issue para eu corrigi-lo.
 
 ## Imagem
 ![photo](https://i.imgur.com/nYfRlOO.png)
