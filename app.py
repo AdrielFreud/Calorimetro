@@ -2,20 +2,22 @@ from tkinter import *
 import tkinter.messagebox
 from tkinter import ttk
 import matplotlib.pyplot as plt 
-import requests, sys, os
+import requests
+import serial
+import sys
+import os
 
 # Email Professora: jane.s.p.i@hotmail.com
 menu = """
 
 \tProff: Rosana
-\tSerie: 1-B
+\tSerie: 2-B
 \tPowered by C.E.S.P
 """
 
 root = Tk()
 
 def Creditos():
-	
 	cred = Tk()
 	cred['bg'] = 'white'
 	cred.title('Creditos')
@@ -27,8 +29,6 @@ def Creditos():
 
 def Exit():
     sys.exit()
-    exit()
-
 
 header = {'User-Agent':"Mozilla /5.0 (Compatible MSIE 9.0;Windows NT 6.1;WOW64; Trident/5.0)"}
 nome_calorias = ""
@@ -52,6 +52,62 @@ data = [
 	("Pao de Queijo", 1, 2.3)
 ]
 
+def Arduino():
+	root = Tk()
+	root.title("Configurar Arduino / Porta")
+	root['bg'] = "white"
+	status_msg = False
+	msng = "offline"
+
+	menubar = Menu(root)
+	root.config(menu=menubar)
+	filemenu = Menu(root)
+	menubar.add_cascade(label='Menu', menu=filemenu)
+
+	filemenu.add_command(label='Alimentos', command=app_alimentos)
+	filemenu.add_command(label='Somar Calorias', command=somar_calorias)
+	filemenu.add_command(label='Adicionar Alimentos', command=add_alimentos)	
+	filemenu.add_command(label='Configurar Arduino', command=Arduino)
+	filemenu.add_command(label='Grafico', command=grafico)
+	filemenu.add_command(label='Creditos', command=Creditos)
+	filemenu.add_command(label='Exit', command=Exit)
+	root.grid()
+
+	Label(root, text="Porta USB Arduino: ", font="Arial 10", bg='white').place(x=5, y=30)
+	
+	porta = Entry(root)
+	porta.place(x=10, y=70)
+
+	Label(root, text="BaudRate (Velocidade da Porta): ", font="Arial 10", bg='white').place(x=5, y=110)
+	baudrate = Entry(root)
+	baudrate.place(x=10, y=150)
+
+	Label(root, text="Timeout (Tempo de Resposta): ", font="Arial 10", bg='white').place(x=5, y=190)
+	time = Entry(root)
+	time.place(x=10, y=230)
+
+	Label(root, text="Status: {}".format(msng), font="Arial 10", fg='red', bg="white").place(x=5, y=280)
+
+	def conectar():
+		if porta.get() and baudrate.get():
+			msng = "Conectado!"
+
+			Label(root, text="Status: {}".format(msng), font="Arial 10", fg='green', bg="white").place(x=5, y=280)
+			ser = serial.Serial(porta.get(), int(baudrate.get()))
+			tkinter.messagebox.showinfo('information', "Arduino Conectado!\n\nStatus Porta: {}\nDispositivo conectado: {}\n".format(ser.isOpen(), ser.name))
+			ser.write(b"init")
+			line = ser.readline()
+			print(line)
+			#tkinter.messagebox.showinfo('information', 'Data from Arduino: {}'.format(line.decode()))
+			#ser.close()
+
+		else:
+			tkinter.messagebox.showinfo('warning', "Dados invalidos!")
+
+	Button(root, text="Iniciar comunicação", font="Arial 10", bg='white', command=conectar).place(x=35, y=320)
+
+	root.geometry("300x400")
+
 def app_alimentos():
 	alimentos = Tk()
 	alimentos.title('Alimentos Listados')
@@ -64,8 +120,8 @@ def app_alimentos():
 	filemenu.add_command(label='Alimentos', command=app_alimentos)
 	filemenu.add_command(label='Somar Calorias', command=somar_calorias)
 	filemenu.add_command(label='Adicionar Alimentos', command=add_alimentos)	
+	filemenu.add_command(label='Configurar Arduino', command=Arduino)
 	filemenu.add_command(label='Grafico', command=grafico)
-	filemenu.add_command(label='Voltar', command=main)
 	filemenu.add_command(label='Creditos', command=Creditos)
 	filemenu.add_command(label='Exit', command=Exit)
 	alimentos.grid()
@@ -90,14 +146,14 @@ def app_alimentos():
 
 def calculate_kcal():
 
-	Label(root, text="Entre com a Massa do Alimento:", font="Arial 10", bg='white').place(x=5, y=50)
+	Label(root, text="Entre com a Massa do Alimento: ", font="Arial 10", bg='white').place(x=5, y=50)
 	
 	Frame(root, height=3, width=250, bd=1, relief=SUNKEN).place(x=15,y=30)
 	
 	massa = Entry()
 	massa.place(x=10, y=90)
 
-	Label(root, text="Entre com o calor especifico da Agua", font="Arial 10", bg='white').place(x=5, y=130)
+	Label(root, text="Entre com o calor especifico da Agua: ", font="Arial 10", bg='white').place(x=5, y=130)
 	calor_especifico = Entry()
 	calor_especifico.place(x=10, y=170)
 
@@ -142,7 +198,7 @@ def add_alimentos():
 
 def somar_calorias():
 
-	root.destroy()
+	#root.destroy()
 	somador = Tk()
 	somador['bg'] = 'white'
 	somador.title('Somar Calorias')
@@ -154,8 +210,8 @@ def somar_calorias():
 	filemenu.add_command(label='Alimentos', command=app_alimentos)
 	filemenu.add_command(label='Somar Calorias', command=somar_calorias)
 	filemenu.add_command(label='Adicionar Alimentos', command=add_alimentos)	
+	filemenu.add_command(label='Configurar Arduino', command=Arduino)
 	filemenu.add_command(label='Grafico', command=grafico)
-	filemenu.add_command(label='Voltar', command=main)
 	filemenu.add_command(label='Creditos', command=Creditos)
 	filemenu.add_command(label='Exit', command=Exit)
 
@@ -207,7 +263,7 @@ def grafico():
 
 def main():
 
-	root.title("Calorias - 1B")
+	root.title("Calorias - 2B")
 
 	root['bg'] = 'white'
 
@@ -219,8 +275,8 @@ def main():
 	filemenu.add_command(label='Alimentos', command=app_alimentos)
 	filemenu.add_command(label='Somar Calorias', command=somar_calorias)
 	filemenu.add_command(label='Adicionar Alimentos', command=add_alimentos)	
+	filemenu.add_command(label='Configurar Arduino', command=Arduino)
 	filemenu.add_command(label='Grafico', command=grafico)
-	filemenu.add_command(label='Voltar', command=main)
 	filemenu.add_command(label='Creditos', command=Creditos)
 	filemenu.add_command(label='Exit', command=Exit)
 	
@@ -230,3 +286,4 @@ def main():
 	root.mainloop()
 
 main()
+#Arduino()
