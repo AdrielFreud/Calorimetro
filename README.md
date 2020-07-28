@@ -26,7 +26,9 @@ Baixe diretamente do github com:
 
 ## Video Explicativo
 
+<figure class="video_container">
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/442495516" width="640" height="400" frameborder="0" allowfullscreen></iframe>
+</figure>
 
 ## Uso
  - py Calorimetro.py
