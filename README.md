@@ -24,6 +24,9 @@ Baixe diretamente do github com:
  - ou https://github.com/AdrielFreud/Calorimetro/archive/master.zip
  - exe <a href="https://mega.nz/#!fJ0AFAKC!wHoGZPki97Bv6k5r1AVWZlDeC1JdcaO668ItnZwBRFA" target="_blank">Link</>
 
+## Video Explicativo
+
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/442495516" width="640" height="400" frameborder="0" allowfullscreen></iframe>
 
 ## Uso
  - py Calorimetro.py
